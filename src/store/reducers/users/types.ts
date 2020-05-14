@@ -1,8 +1,13 @@
-export interface User {
-  id: number;
+interface UserAttributes {
   firstName: string;
   lastName: string;
   email: string;
+}
+
+export interface User {
+  id: number;
+  type: string;
+  attributes: UserAttributes;
 }
 
 export interface FetchUsersState {

@@ -6,8 +6,10 @@ module.exports = {
     "plugin:@typescript-eslint/recommended"
   ],
   rules: {
+    "@typescript-eslint/explicit-function-return-type": "off",
     "arrow-parens": "off",
     "import/prefer-default-export": "off",
+    "no-shadow": "off",
   },
   parserOptions: {
     ecmaVersion: 2018,

@@ -1,13 +1,15 @@
 import { createSelector } from 'reselect';
 
-export const usersState = (state: any) => state.users;
+import { AppState } from '..';
+
+export const usersState = (state: AppState) => state.users;
 
 export const fetchUsersState = createSelector(
   usersState,
-  ({ fetchReducer }) => fetchReducer,
+  (usersState) => usersState.fetchUsers,
 );
 
 export const users = createSelector(
   fetchUsersState,
-  ({ data }) => data,
+  (fetchUsersState) => fetchUsersState.data,
 );
