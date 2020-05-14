@@ -5,16 +5,17 @@ import { bindActionCreators } from 'redux';
 import Dashboard from './presenter';
 import { AppState } from '../../store';
 import { getUsers } from '../../store/actions/users';
-// import { users } from '../../store/selectors/users';
+import { users } from '../../store/selectors/users';
 // import { User } from '../../store/reducers/users/types';
 
 interface Props {
   getUsers: typeof getUsers;
-  // users: User[];
+  // users: any;
 }
 
 const DashboardContainer = (props: Props) => {
   const { getUsers } = props;
+  console.log(props);
 
   useEffect(() => {
     getUsers();
@@ -25,7 +26,9 @@ const DashboardContainer = (props: Props) => {
   );
 };
 
-const mapStateToProps = (state: AppState) => state;
+const mapStateToProps = (state: AppState) => ({
+  users: users(state),
+});
 
 const mapDispatchToProps = (dispatch: any) => bindActionCreators(
   {

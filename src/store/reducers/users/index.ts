@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 import { FetchUsersState } from './types';
 
 const initialFetchState: FetchUsersState = {
@@ -34,4 +36,6 @@ const fetchReducer = (state = initialFetchState, action: any) => {
   }
 };
 
-export default fetchReducer;
+export default combineReducers({
+  fetchUsers: fetchReducer,
+});
