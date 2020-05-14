@@ -5,6 +5,10 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
+  rules: {
+    "arrow-parens": "off",
+    "import/prefer-default-export": "off",
+  },
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
