@@ -15,7 +15,6 @@ interface Props {
 
 const DashboardContainer = (props: Props) => {
   const { getUsers } = props;
-  console.log(props);
 
   useEffect(() => {
     getUsers();

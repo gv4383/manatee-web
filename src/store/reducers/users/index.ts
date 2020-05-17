@@ -15,21 +15,21 @@ const fetchReducer = (state = initialFetchState, action: any) => {
       return {
         ...state,
         isLoading: true,
-        isResolved: false,
+        hasResolved: false,
       };
     case 'GET_USERS/SUCCESS':
       return {
         ...state,
         data: action.payload,
         isLoading: false,
-        isResolved: true,
+        hasResolved: true,
       };
     case 'GET_USERS/ERROR':
       return {
         ...state,
         error: action.error,
         isLoading: false,
-        isResolved: true,
+        hasResolved: true,
       };
     default:
       return state;
