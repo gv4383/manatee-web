@@ -7,9 +7,11 @@ import thunk from 'redux-thunk';
 
 import rootReducer from './reducers';
 
+/* eslint-disable */
 interface ReduxWindow extends Window {
   __REDUX_DEVTOOLS_EXTENSION__: any;
 }
+/* eslint-enable */
 
 const middleware = applyMiddleware(thunk);
 
