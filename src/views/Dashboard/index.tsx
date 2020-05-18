@@ -11,7 +11,7 @@ const DashboardContainer = () => {
 
   useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch, getUsers]);
+  }, [dispatch]);
 
   return (
     <Dashboard users={users} />
