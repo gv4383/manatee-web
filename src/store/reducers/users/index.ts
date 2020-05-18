@@ -1,15 +1,16 @@
 import { combineReducers } from 'redux';
 
 import { FetchUsersState } from './types';
+import { Action } from '..';
 
 const initialFetchState: FetchUsersState = {
-  data: [],
+  data: null,
   error: '',
   isLoading: false,
   hasResolved: false,
 };
 
-const fetchReducer = (state = initialFetchState, action: any) => {
+const fetchReducer = (state = initialFetchState, action: Action) => {
   switch (action.type) {
     case 'GET_USERS/LOADING':
       return {
