@@ -8,6 +8,7 @@ module.exports = {
   rules: {
     "@typescript-eslint/explicit-function-return-type": "off",
     "arrow-parens": "off",
+    "import/no-cycle": "off",
     "import/prefer-default-export": "off",
     "no-shadow": "off",
   },
