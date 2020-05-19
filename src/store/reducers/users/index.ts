@@ -1,42 +1,91 @@
-import { combineReducers } from 'redux';
+import {
+  UsersData,
+  UsersState,
+} from './types';
 
-import { FetchUsersState } from './types';
-import { Action } from '..';
+interface UsersEvent {
+  data: UsersData;
+  error: string;
+  type: string;
+}
 
-const initialFetchState: FetchUsersState = {
+const initialUsersState: UsersState = {
+  status: 'IDLE',
   data: null,
-  error: '',
-  isLoading: false,
-  hasResolved: false,
+  error: null,
 };
 
-const fetchReducer = (state = initialFetchState, action: Action) => {
-  switch (action.type) {
-    case 'GET_USERS/LOADING':
+const idleReducer = (
+  state: UsersState,
+  event: UsersEvent,
+) => {
+  switch (event.type) {
+    case 'GET_USERS/FETCH':
       return {
         ...state,
-        isLoading: true,
-        hasResolved: false,
-      };
-    case 'GET_USERS/SUCCESS':
-      return {
-        ...state,
-        data: action.payload,
-        isLoading: false,
-        hasResolved: true,
-      };
-    case 'GET_USERS/ERROR':
-      return {
-        ...state,
-        error: action.error,
-        isLoading: false,
-        hasResolved: true,
+        status: 'LOADING',
+        error: null,
       };
     default:
       return state;
   }
 };
 
-export default combineReducers({
-  fetchUsers: fetchReducer,
-});
+const loadingReducer = (
+  state: UsersState,
+  event: UsersEvent,
+) => {
+  switch (event.type) {
+    case 'GET_USERS/RESOLVE':
+      return {
+        status: 'SUCCESS',
+        data: event.data,
+        error: null,
+      };
+    case 'GET_USERS/FAILURE':
+      return {
+        ...state,
+        status: 'FAILURE',
+        error: event.error,
+      };
+    default:
+      return state;
+  }
+};
+
+const successFailureReducer = (
+  state: UsersState,
+  event: UsersEvent,
+) => {
+  switch (event.type) {
+    case 'GET_USERS/FETCH':
+      return {
+        ...state,
+        status: 'LOADING',
+        error: null,
+      };
+    case 'GET_USERS/CLEAR':
+      return initialUsersState;
+    default:
+      return state;
+  }
+};
+
+const users = (
+  state: UsersState = initialUsersState,
+  event: UsersEvent,
+) => {
+  switch (state.status) {
+    case 'IDLE':
+      return idleReducer(state, event);
+    case 'LOADING':
+      return loadingReducer(state, event);
+    case 'SUCCESS':
+    case 'FAILURE':
+      return successFailureReducer(state, event);
+    default:
+      return state;
+  }
+};
+
+export default users;

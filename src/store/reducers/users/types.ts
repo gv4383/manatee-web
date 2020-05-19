@@ -37,18 +37,13 @@ export interface Skill {
   attributes: SkillAttributes;
 }
 
-export interface UserData {
+export interface UsersData {
   data: User[];
   included: Skill[];
 }
 
-export interface FetchUsersState {
-  data: UserData | null;
-  error: string | null;
-  isLoading: boolean;
-  hasResolved: boolean;
-}
-
-export interface UsersState {
-  fetchUsers: FetchUsersState;
-}
+export type UsersState =
+  | { status: 'IDLE'; data: null; error: null }
+  | { status: 'LOADING'; data: UsersData | null; error: null }
+  | { status: 'SUCCESS'; data: UsersData; error: null }
+  | { status: 'FAILURE'; data: UsersData | null; error: string };
