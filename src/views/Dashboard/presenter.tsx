@@ -10,7 +10,12 @@ interface Props {
 const Dashboard = (props: Props) => {
   const { users } = props;
   const displayUsers = users && users.map((user: User) => (
-    <UserCard key={user.attributes.first_name} />
+    <UserCard
+      key={user.attributes.first_name}
+      email={user.attributes.email}
+      firstName={user.attributes.first_name}
+      lastName={user.attributes.last_name}
+    />
   ));
 
   return (

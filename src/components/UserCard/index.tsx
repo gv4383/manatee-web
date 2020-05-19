@@ -1,25 +1,37 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
 
 import pic from '../../assets/person1.jpg';
 
-const UserCard: FunctionComponent = () => (
-  <Card>
-    <Image src={pic} wrapped ui={false} />
-    <Card.Content>
-      <Card.Header>Matthew</Card.Header>
-      <Card.Meta>
-        <span className="date">Joined in 2015</span>
-      </Card.Meta>
-      <Card.Description>
-        Matthew is a musician living in Nashville.
-      </Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-      <Icon name="user" />
-      22 Friends
-    </Card.Content>
-  </Card>
-);
+interface Props {
+  email: string;
+  firstName: string;
+  lastName: string;
+}
+
+const UserCard = (props: Props) => {
+  const {
+    email,
+    firstName,
+    lastName,
+  } = props;
+  const fullName = `${firstName} ${lastName}`;
+
+  return (
+    <Card>
+      <Image src={pic} wrapped ui={false} />
+      <Card.Content>
+        <Card.Header>{fullName}</Card.Header>
+        <Card.Meta>
+          <span className="date">{email}</span>
+        </Card.Meta>
+      </Card.Content>
+      <Card.Content extra>
+        <Icon name="star" />
+        22 Skills
+      </Card.Content>
+    </Card>
+  );
+};
 
 export default UserCard;
