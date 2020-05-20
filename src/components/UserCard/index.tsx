@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
 
 import pic from '../../assets/person1.jpg';
-import { RelationshipSkill } from '../../store/reducers/users/types';
+import { RelationshipSkill } from '../../store/reducers/user/types';
 
 interface Props {
   email: string;

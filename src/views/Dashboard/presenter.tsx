@@ -1,7 +1,7 @@
 import React from 'react';
 
 import UserCard from '../../components/UserCard';
-import { User } from '../../store/reducers/users/types';
+import { User } from '../../store/reducers/user/types';
 
 interface Props {
   users: User[] | undefined;
