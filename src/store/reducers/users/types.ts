@@ -11,7 +11,7 @@ interface SkillAttributes {
   user_id: number;
 }
 
-interface RelationshipSkill {
+export interface RelationshipSkill {
   id: string;
   type: string;
 }

@@ -15,6 +15,7 @@ const Dashboard = (props: Props) => {
       email={user.attributes.email}
       firstName={user.attributes.first_name}
       lastName={user.attributes.last_name}
+      skills={user.relationships.skills.data}
     />
   ));
 
