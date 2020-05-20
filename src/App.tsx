@@ -1,15 +1,18 @@
 import React, { FunctionComponent } from 'react';
 import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
 
 import store from './store';
-import Dashboard from './views/Dashboard';
+import Routes from './components/Routes';
 
 import './App.scss';
 
 const App: FunctionComponent = () => (
   <Provider store={store}>
     <div className="App">
-      <Dashboard />
+      <HashRouter>
+        <Routes />
+      </HashRouter>
     </div>
   </Provider>
 );
