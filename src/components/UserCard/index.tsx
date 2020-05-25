@@ -2,24 +2,35 @@ import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
 
 import pic from '../../assets/person1.jpg';
-import { RelationshipSkill } from '../../store/reducers/user/types';
+import { RelationshipSkill, Skill } from '../../store/reducers/user/types';
 
 interface Props {
-  email: string;
-  firstName: string;
-  lastName: string;
-  skills: RelationshipSkill[];
+  email: string | undefined;
+  firstName: string | undefined;
+  isProfileCard?: boolean;
+  lastName: string | undefined;
+  skills?: RelationshipSkill[] | Skill[];
 }
 
 const UserCard = (props: Props) => {
   const {
     email,
     firstName,
+    isProfileCard,
     lastName,
     skills,
   } = props;
+  console.log(props);
   const fullName = `${firstName} ${lastName}`;
-  const skillCount = skills.length;
+  const skillCount = skills && skills.length;
+  const extraCardContent = !isProfileCard && (
+    <Card.Content extra>
+      <Icon name="cogs" />
+      {skillCount}
+      {' '}
+      Skills
+    </Card.Content>
+  );
 
   return (
     <Card>
@@ -30,12 +41,7 @@ const UserCard = (props: Props) => {
           <span className="date">{email}</span>
         </Card.Meta>
       </Card.Content>
-      <Card.Content extra>
-        <Icon name="cogs" />
-        {skillCount}
-        {' '}
-        Skills
-      </Card.Content>
+      {extraCardContent}
     </Card>
   );
 };
