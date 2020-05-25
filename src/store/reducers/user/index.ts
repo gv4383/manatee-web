@@ -37,9 +37,9 @@ const loadingReducer = (
       return {
         status: 'SUCCESS',
         data: event.data,
-        error: event.error,
+        error: null,
       };
-    case 'GET_USER/FAILURE':
+    case 'GET_USER/REJECT':
       return {
         ...state,
         status: 'FAILURE',
@@ -61,7 +61,7 @@ const successFailureReducer = (
         status: 'LOADING',
         error: null,
       };
-    case 'GET_USERS/CLEAR':
+    case 'GET_USER/CLEAR':
       return initialUserState;
     default:
       return state;

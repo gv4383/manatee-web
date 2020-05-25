@@ -42,7 +42,7 @@ const loadingReducer = (
         data: event.data,
         error: null,
       };
-    case 'GET_USERS/FAILURE':
+    case 'GET_USERS/REJECT':
       return {
         ...state,
         status: 'FAILURE',
