@@ -20,7 +20,6 @@ const UserCard = (props: Props) => {
     lastName,
     skills,
   } = props;
-  console.log(props);
   const fullName = `${firstName} ${lastName}`;
   const skillCount = skills && skills.length;
   const extraCardContent = !isProfileCard && (
