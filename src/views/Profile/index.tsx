@@ -4,7 +4,10 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import Profile from './presenter';
 import { getUser } from '../../store/actions/user';
-import { user as UserSelector } from '../../store/selectors/user';
+import {
+  skills as SkillsSelector,
+  user as UserSelector,
+} from '../../store/selectors/user';
 
 interface MatchParams {
   id: string;
@@ -22,13 +25,14 @@ const ProfileContainer = (props: Props) => {
   } = props;
   const dispatch = useDispatch();
   const user = useSelector(UserSelector);
+  const skills = useSelector(SkillsSelector);
   const parsedProfileId = parseInt(profileId, 10);
 
   useEffect(() => {
     dispatch(getUser(parsedProfileId));
   }, [dispatch, parsedProfileId]);
 
-  return <Profile user={user} />;
+  return <Profile skills={skills} user={user} />;
 };
 
 export default ProfileContainer;

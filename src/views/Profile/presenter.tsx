@@ -1,14 +1,16 @@
 import React from 'react';
 
-import { User } from '../../store/reducers/user/types';
+import { Skill, User } from '../../store/reducers/user/types';
 
 interface Props {
+  skills: Skill[] | undefined;
   user: User | undefined;
 }
 
 const Profile = (props: Props) => {
-  const { user } = props;
+  const { skills, user } = props;
   console.log(user);
+  console.log(skills);
 
   return (
     <div>PROFILE PAGE</div>
