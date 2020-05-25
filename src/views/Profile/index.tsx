@@ -1,19 +1,34 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
 
 import Profile from './presenter';
 import { getUser } from '../../store/actions/user';
 import { user as UserSelector } from '../../store/selectors/user';
 
-const ProfileContainer = () => {
+interface MatchParams {
+  id: string;
+}
+
+type Props = RouteComponentProps<MatchParams>;
+
+const ProfileContainer = (props: Props) => {
+  const {
+    match: {
+      params: {
+        id: profileId,
+      },
+    },
+  } = props;
   const dispatch = useDispatch();
   const user = useSelector(UserSelector);
+  const parsedProfileId = parseInt(profileId, 10);
 
   useEffect(() => {
-    dispatch(getUser(1));
-  }, [dispatch]);
+    dispatch(getUser(parsedProfileId));
+  }, [dispatch, parsedProfileId]);
 
-  return <Profile />;
+  return <Profile user={user} />;
 };
 
 export default ProfileContainer;
