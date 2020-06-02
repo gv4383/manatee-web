@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from 'semantic-ui-react';
 
 import { Skill, User } from '../../store/reducers/user/types';
 import SkillCard from '../../components/SkillCard';
@@ -28,6 +30,9 @@ const Profile = (props: Props) => {
 
   return (
     <div>
+      <Link to="/">
+        <Button>Back</Button>
+      </Link>
       <UserCard
         email={email}
         firstName={firstName}
