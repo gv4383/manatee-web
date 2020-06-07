@@ -5,6 +5,7 @@ import { Button } from 'semantic-ui-react';
 import { Skill, User } from '../../store/reducers/user/types';
 import SkillCard from '../../components/SkillCard';
 import UserCard from '../../components/UserCard';
+import SkillForm from '../../components/SkillForm';
 
 interface Props {
   skills: Skill[] | undefined;
@@ -40,6 +41,7 @@ const Profile = (props: Props) => {
         skills={skills}
         isProfileCard
       />
+      <SkillForm />
       {userSkills}
     </div>
   );
