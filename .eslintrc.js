@@ -10,6 +10,7 @@ module.exports = {
     "arrow-parens": "off",
     "import/no-cycle": "off",
     "import/prefer-default-export": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "no-shadow": "off",
   },
   parserOptions: {

@@ -1,7 +1,24 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { Form } from 'semantic-ui-react';
+import React, {
+  ChangeEvent,
+  FormEvent,
+  useState,
+} from 'react';
+import {
+  Form,
+  CheckboxProps,
+  InputOnChangeData,
+  TextAreaProps,
+} from 'semantic-ui-react';
 
-type Event = ChangeEvent<HTMLInputElement> | FormEvent<HTMLTextAreaElement>;
+type Event =
+  | ChangeEvent<HTMLInputElement>
+  | FormEvent<HTMLTextAreaElement>
+  | FormEvent<HTMLInputElement>;
+
+type EventData =
+  | CheckboxProps
+  | InputOnChangeData
+  | TextAreaProps;
 
 const SkillForm = () => {
   const formInitialState = {
@@ -11,31 +28,66 @@ const SkillForm = () => {
   };
   const [formInputs, setFormInputs] = useState(formInitialState);
 
-  const handleChange = (event: Event) => {
-    const { name, value } = event.currentTarget;
+  const handleChange = (event: Event, data: EventData) => {
+    const { name, value } = data;
 
     setFormInputs({ ...formInputs, [name]: value });
   };
 
   return (
     <Form>
-      <Form.Group widths="equal">
-        <Form.Input
-          fluid
-          label="Skill name"
-          name="name"
-          onChange={handleChange}
-          placeholder="Skill name"
-        />
-      </Form.Group>
+      <Form.Input
+        fluid
+        label="Name"
+        name="name"
+        onChange={handleChange}
+        placeholder="Skill name"
+      />
       <Form.TextArea
         label="Description"
         name="description"
         onChange={handleChange}
-        placeholder="Give more details..."
+        placeholder="Share some details about this skill..."
       />
-      <Form.Button>Submit</Form.Button>
-      <Form.Button>Cancel</Form.Button>
+      <Form.Group inline>
+        <label>Rating</label>
+        <Form.Radio
+          checked={formInputs.rating === 1}
+          label="1"
+          name="rating"
+          onChange={handleChange}
+          value={1}
+        />
+        <Form.Radio
+          checked={formInputs.rating === 2}
+          label="2"
+          name="rating"
+          onChange={handleChange}
+          value={2}
+        />
+        <Form.Radio
+          checked={formInputs.rating === 3}
+          label="3"
+          name="rating"
+          onChange={handleChange}
+          value={3}
+        />
+        <Form.Radio
+          checked={formInputs.rating === 4}
+          label="4"
+          name="rating"
+          onChange={handleChange}
+          value={4}
+        />
+        <Form.Radio
+          checked={formInputs.rating === 5}
+          label="5"
+          name="rating"
+          onChange={handleChange}
+          value={5}
+        />
+      </Form.Group>
+      <Form.Button type="submit">Submit</Form.Button>
     </Form>
   );
 };
