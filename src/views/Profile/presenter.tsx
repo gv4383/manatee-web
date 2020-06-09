@@ -8,12 +8,13 @@ import UserCard from '../../components/UserCard';
 import SkillForm from '../../components/SkillForm';
 
 interface Props {
+  onClickBack: () => void;
   skills: Skill[] | undefined;
   user: User | undefined;
 }
 
 const Profile = (props: Props) => {
-  const { skills, user } = props;
+  const { onClickBack, skills, user } = props;
   const email = user && user.attributes.email;
   const firstName = user && user.attributes.first_name;
   const lastName = user && user.attributes.last_name;
@@ -32,7 +33,7 @@ const Profile = (props: Props) => {
   return (
     <div>
       <Link to="/">
-        <Button>Back</Button>
+        <Button onClick={onClickBack}>Back</Button>
       </Link>
       <UserCard
         email={email}

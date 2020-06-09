@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 
 import Profile from './presenter';
-import { getUser } from '../../store/actions/user';
+import { clearUser, getUser } from '../../store/actions/user';
 import {
   skills as SkillsSelector,
   user as UserSelector,
@@ -32,7 +32,15 @@ const ProfileContainer = (props: Props) => {
     dispatch(getUser(parsedProfileId));
   }, [dispatch, parsedProfileId]);
 
-  return <Profile skills={skills} user={user} />;
+  const handleOnClickBack = () => dispatch(clearUser());
+
+  return (
+    <Profile
+      onClickBack={handleOnClickBack}
+      skills={skills}
+      user={user}
+    />
+  );
 };
 
 export default ProfileContainer;

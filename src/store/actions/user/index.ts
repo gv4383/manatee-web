@@ -11,3 +11,7 @@ export const getUser = (userId: number) => (dispatch: ThunkDispatch) => {
     .then(res => dispatch(getUserEvent.resolve(res)))
     .catch(error => dispatch(getUserEvent.reject(error)));
 };
+
+export const clearUser = () => (dispatch: ThunkDispatch) => {
+  dispatch(getUserEvent.clear());
+};
