@@ -47,3 +47,9 @@ export type UserState =
   | { status: 'LOADING'; data: UserData | null; error: null }
   | { status: 'SUCCESS'; data: UserData; error: null }
   | { status: 'FAILURE'; data: UserData | null; error: string };
+
+export interface UserEvent {
+  data: UserData;
+  error: string;
+  type: string;
+}

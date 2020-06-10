@@ -1,10 +1,4 @@
-import { UserData, UserState } from './types';
-
-interface UserEvent {
-  data: UserData;
-  error: string;
-  type: string;
-}
+import { UserEvent, UserState } from './types';
 
 const initialUserState: UserState = {
   status: 'IDLE',
