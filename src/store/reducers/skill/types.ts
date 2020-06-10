@@ -8,3 +8,7 @@ export interface CreateSkillEvent {
   error: string;
   type: string;
 }
+
+export interface SkillState {
+  create: CreateSkillState;
+}

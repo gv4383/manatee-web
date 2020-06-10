@@ -1,6 +1,6 @@
 import { CreateSkillEvent, CreateSkillState } from './types';
 
-const initialCreateSkillState: CreateSkillState = {
+export const initialCreateSkillState: CreateSkillState = {
   status: 'IDLE',
   error: null,
 };
