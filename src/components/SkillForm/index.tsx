@@ -48,12 +48,18 @@ const SkillForm = (props: Props) => {
     setFormInputs({ ...formInputs, [name]: value });
   };
 
-  const handleSubmit = () => userId && dispatch(createSkill(
-    name,
-    description,
-    rating,
-    parseInt(userId, 10),
-  ));
+  const handleSubmit = () => {
+    if (userId) {
+      dispatch(createSkill(
+        name,
+        description,
+        rating,
+        parseInt(userId, 10),
+      ));
+    }
+
+    setFormInputs(formInitialState);
+  };
 
   return (
     <Form>
@@ -63,12 +69,14 @@ const SkillForm = (props: Props) => {
         name="name"
         onChange={handleChange}
         placeholder="Skill name"
+        value={name}
       />
       <Form.TextArea
         label="Description"
         name="description"
         onChange={handleChange}
         placeholder="Share some details about this skill..."
+        value={description}
       />
       <Form.Group inline>
         <label>Rating</label>
