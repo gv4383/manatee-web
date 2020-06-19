@@ -9,14 +9,12 @@ const API = {
     .then(res => res.data),
   post: (endpoint: string, payload: any) => axios(`${baseUrl}${endpoint}`, {
     method: 'POST',
-    headers: null,
-    data: JSON.stringify(payload),
+    data: payload,
   })
     .then(res => res),
   put: (endpoint: string, payload: any) => axios(`${baseUrl}${endpoint}`, {
     method: 'POST',
-    headers: null,
-    data: JSON.stringify(payload),
+    data: payload,
   })
     .then(res => res),
   delete: (endpoint: string) => axios(`${baseUrl}${endpoint}`, {

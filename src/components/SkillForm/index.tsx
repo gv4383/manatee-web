@@ -3,12 +3,15 @@ import React, {
   FormEvent,
   useState,
 } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   Form,
   CheckboxProps,
   InputOnChangeData,
   TextAreaProps,
 } from 'semantic-ui-react';
+
+import { createSkill } from '../../store/actions/skill';
 
 type Event =
   | ChangeEvent<HTMLInputElement>
@@ -20,19 +23,37 @@ type EventData =
   | InputOnChangeData
   | TextAreaProps;
 
-const SkillForm = () => {
+interface Props {
+  userId: string | undefined;
+}
+
+const SkillForm = (props: Props) => {
+  const { userId } = props;
   const formInitialState = {
     name: '',
     description: '',
     rating: 1,
   };
   const [formInputs, setFormInputs] = useState(formInitialState);
+  const {
+    description,
+    name,
+    rating,
+  } = formInputs;
+  const dispatch = useDispatch();
 
   const handleChange = (event: Event, data: EventData) => {
     const { name, value } = data;
 
     setFormInputs({ ...formInputs, [name]: value });
   };
+
+  const handleSubmit = () => userId && dispatch(createSkill(
+    name,
+    description,
+    rating,
+    parseInt(userId, 10),
+  ));
 
   return (
     <Form>
@@ -87,7 +108,7 @@ const SkillForm = () => {
           value={5}
         />
       </Form.Group>
-      <Form.Button type="submit">Submit</Form.Button>
+      <Form.Button type="submit" onClick={handleSubmit}>Submit</Form.Button>
     </Form>
   );
 };

@@ -1,6 +1,7 @@
 import Api from '../../utils/api';
 import eventCreator from '../../lib/eventCreator';
 import { ThunkDispatch } from '../../types';
+import { getUser } from '../user';
 
 const createSkillEvent = eventCreator('CREATE_SKILL');
 
@@ -16,8 +17,11 @@ export const createSkill = (
     name,
     description,
     rating,
-    userId,
+    user_id: userId,
   })
-    .then(res => dispatch(createSkillEvent.resolve(res)))
+    .then(res => {
+      dispatch(createSkillEvent.resolve(res));
+      dispatch(getUser(userId));
+    })
     .catch(error => dispatch(createSkillEvent.reject(error)));
 };
