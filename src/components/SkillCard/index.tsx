@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
+import { Button, Card } from 'semantic-ui-react';
 
 import './styles.scss';
 
@@ -30,12 +30,10 @@ const SkillCard = (props: Props) => {
         </Card.Header>
         <Card.Description>{description}</Card.Description>
       </Card.Content>
-      {/* <Card.Content extra>
-        Rating:
-        {' '}
-        {rating}
-        /5
-      </Card.Content> */}
+      <Card.Content extra>
+        <Button>Edit</Button>
+        <Button color="red">Delete</Button>
+      </Card.Content>
     </Card>
   );
 };
