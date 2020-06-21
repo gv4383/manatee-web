@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react';
 
+import './styles.scss';
+
 interface Props {
   description: string;
   name: string;
@@ -17,15 +19,23 @@ const SkillCard = (props: Props) => {
   return (
     <Card>
       <Card.Content>
-        <Card.Header>{name}</Card.Header>
+        <Card.Header className="skill-card-header">
+          <div>{name}</div>
+          <div>
+            Rating:
+            {' '}
+            {rating}
+            /5
+          </div>
+        </Card.Header>
         <Card.Description>{description}</Card.Description>
       </Card.Content>
-      <Card.Content extra>
+      {/* <Card.Content extra>
         Rating:
         {' '}
         {rating}
         /5
-      </Card.Content>
+      </Card.Content> */}
     </Card>
   );
 };
