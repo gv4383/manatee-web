@@ -1,7 +1,8 @@
 import { DestroySkillEvent, DestroySkillState } from './types';
+import { EVENTS, STATUSES } from '../../lib/constants';
 
 export const initialDestroySkillState: DestroySkillState = {
-  status: 'IDLE',
+  status: STATUSES.IDLE,
   error: null,
 };
 
@@ -12,10 +13,10 @@ const idleReducer = (
   const { type } = event;
 
   switch (type) {
-    case 'DESTROY_SKILL/FETCH':
+    case `DESTROY_SKILL/${EVENTS.FETCH}`:
       return {
         ...state,
-        status: 'LOADING',
+        status: STATUSES.LOADING,
         error: null,
       };
     default:
@@ -30,15 +31,15 @@ const loadingReducer = (
   const { error, type } = event;
 
   switch (type) {
-    case 'DESTROY_SKILL/RESOLVE':
+    case `DESTROY_SKILL/${EVENTS.RESOLVE}`:
       return {
-        status: 'SUCCESS',
+        status: STATUSES.SUCCESS,
         error: null,
       };
-    case 'DESTROY_SKILL/REJECT':
+    case `DESTROY_SKILL/${EVENTS.REJECT}`:
       return {
         ...state,
-        status: 'FAILURE',
+        status: STATUSES.FAILURE,
         error,
       };
     default:
@@ -53,10 +54,10 @@ const successFailureReducer = (
   const { type } = event;
 
   switch (type) {
-    case 'DESTROY_SKILL/FETCH':
+    case `DESTROY_SKILL/${EVENTS.FETCH}`:
       return {
         ...state,
-        status: 'LOADING',
+        status: STATUSES.LOADING,
         error: null,
       };
     default:
@@ -71,12 +72,12 @@ const destroy = (
   const { status } = state;
 
   switch (status) {
-    case 'IDLE':
+    case STATUSES.IDLE:
       return idleReducer(state, event);
-    case 'LOADING':
+    case STATUSES.LOADING:
       return loadingReducer(state, event);
-    case 'SUCCESS':
-    case 'FAILURE':
+    case STATUSES.SUCCESS:
+    case STATUSES.FAILURE:
       return successFailureReducer(state, event);
     default:
       return state;

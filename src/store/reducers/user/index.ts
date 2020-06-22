@@ -1,7 +1,8 @@
 import { UserEvent, UserState } from './types';
+import { EVENTS, STATUSES } from '../../lib/constants';
 
 const initialUserState: UserState = {
-  status: 'IDLE',
+  status: STATUSES.IDLE,
   data: null,
   error: null,
 };
@@ -11,10 +12,10 @@ const idleReducer = (
   event: UserEvent,
 ) => {
   switch (event.type) {
-    case 'GET_USER/FETCH':
+    case `GET_USER/${EVENTS.FETCH}`:
       return {
         ...state,
-        status: 'LOADING',
+        status: STATUSES.LOADING,
         error: null,
       };
     default:
@@ -27,16 +28,16 @@ const loadingReducer = (
   event: UserEvent,
 ) => {
   switch (event.type) {
-    case 'GET_USER/RESOLVE':
+    case `GET_USER/${EVENTS.RESOLVE}`:
       return {
-        status: 'SUCCESS',
+        status: STATUSES.SUCCESS,
         data: event.data,
         error: null,
       };
-    case 'GET_USER/REJECT':
+    case `GET_USER/${EVENTS.REJECT}`:
       return {
         ...state,
-        status: 'FAILURE',
+        status: STATUSES.FAILURE,
         error: event.error,
       };
     default:
@@ -49,13 +50,13 @@ const successFailureReducer = (
   event: UserEvent,
 ) => {
   switch (event.type) {
-    case 'GET_USER/FETCH':
+    case `GET_USER/${EVENTS.FETCH}`:
       return {
         ...state,
-        status: 'LOADING',
+        status: STATUSES.LOADING,
         error: null,
       };
-    case 'GET_USER/CLEAR':
+    case `GET_USER/${EVENTS.CLEAR}`:
       return initialUserState;
     default:
       return state;
@@ -67,12 +68,12 @@ const user = (
   event: UserEvent,
 ) => {
   switch (state.status) {
-    case 'IDLE':
+    case STATUSES.IDLE:
       return idleReducer(state, event);
-    case 'LOADING':
+    case STATUSES.LOADING:
       return loadingReducer(state, event);
-    case 'SUCCESS':
-    case 'FAILURE':
+    case STATUSES.SUCCESS:
+    case STATUSES.FAILURE:
       return successFailureReducer(state, event);
     default:
       return state;

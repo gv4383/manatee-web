@@ -1,3 +1,5 @@
+import { EVENTS } from './constants';
+
 interface Event<T = any> {
   type: string;
   data?: T;
@@ -12,16 +14,16 @@ interface EventCreator {
 }
 
 const eventCreator = (constant: string): EventCreator => ({
-  fetch: () => ({ type: `${constant}/FETCH` }),
+  fetch: () => ({ type: `${constant}/${EVENTS.FETCH}` }),
   resolve: (data: any) => ({
-    type: `${constant}/RESOLVE`,
+    type: `${constant}/${EVENTS.RESOLVE}`,
     data,
   }),
   reject: (error?: string) => ({
-    type: `${constant}/REJECT`,
+    type: `${constant}/${EVENTS.REJECT}`,
     error: error || 'There was an unknown error.',
   }),
-  clear: () => ({ type: `${constant}/CLEAR` }),
+  clear: () => ({ type: `${constant}/${EVENTS.CLEAR}` }),
 });
 
 export default eventCreator;

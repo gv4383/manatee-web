@@ -2,6 +2,7 @@ import {
   UsersData,
   UsersState,
 } from './types';
+import { EVENTS, STATUSES } from '../../lib/constants';
 
 interface UsersEvent {
   data: UsersData;
@@ -10,7 +11,7 @@ interface UsersEvent {
 }
 
 const initialUsersState: UsersState = {
-  status: 'IDLE',
+  status: STATUSES.IDLE,
   data: null,
   error: null,
 };
@@ -20,10 +21,10 @@ const idleReducer = (
   event: UsersEvent,
 ) => {
   switch (event.type) {
-    case 'GET_USERS/FETCH':
+    case `GET_USERS/${EVENTS.FETCH}`:
       return {
         ...state,
-        status: 'LOADING',
+        status: STATUSES.LOADING,
         error: null,
       };
     default:
@@ -36,16 +37,16 @@ const loadingReducer = (
   event: UsersEvent,
 ) => {
   switch (event.type) {
-    case 'GET_USERS/RESOLVE':
+    case `GET_USERS/${EVENTS.RESOLVE}`:
       return {
-        status: 'SUCCESS',
+        status: STATUSES.SUCCESS,
         data: event.data,
         error: null,
       };
-    case 'GET_USERS/REJECT':
+    case `GET_USERS/${EVENTS.REJECT}`:
       return {
         ...state,
-        status: 'FAILURE',
+        status: STATUSES.FAILURE,
         error: event.error,
       };
     default:
@@ -58,13 +59,13 @@ const successFailureReducer = (
   event: UsersEvent,
 ) => {
   switch (event.type) {
-    case 'GET_USERS/FETCH':
+    case `GET_USERS/${EVENTS.FETCH}`:
       return {
         ...state,
-        status: 'LOADING',
+        status: STATUSES.LOADING,
         error: null,
       };
-    case 'GET_USERS/CLEAR':
+    case `GET_USERS/${EVENTS.CLEAR}`:
       return initialUsersState;
     default:
       return state;
@@ -76,12 +77,12 @@ const users = (
   event: UsersEvent,
 ) => {
   switch (state.status) {
-    case 'IDLE':
+    case STATUSES.IDLE:
       return idleReducer(state, event);
-    case 'LOADING':
+    case STATUSES.LOADING:
       return loadingReducer(state, event);
-    case 'SUCCESS':
-    case 'FAILURE':
+    case STATUSES.SUCCESS:
+    case STATUSES.FAILURE:
       return successFailureReducer(state, event);
     default:
       return state;
