@@ -4,6 +4,7 @@ import { ThunkDispatch } from '../../types';
 import { getUser } from '../user';
 
 const createSkillEvent = eventCreator('CREATE_SKILL');
+const destroySkillEvent = eventCreator('DESTROY_SKILL');
 
 export const createSkill = (
   name: string,
@@ -24,4 +25,12 @@ export const createSkill = (
       dispatch(getUser(userId));
     })
     .catch(error => dispatch(createSkillEvent.reject(error)));
+};
+
+export const destroySkill = (skillId: number) => (dispatch: ThunkDispatch) => {
+  dispatch(destroySkillEvent.fetch());
+
+  return Api.delete(`/skills/${skillId}`)
+    .then(res => dispatch(destroySkillEvent.resolve(res)))
+    .catch(error => dispatch(destroySkillEvent.reject(error)));
 };
