@@ -38,7 +38,12 @@ const SkillCard = (props: Props) => {
       </Card.Content>
       <Card.Content extra>
         <Button>Edit</Button>
-        <Button color="red" onClick={() => onClickDelete(skillId, userId)}>Delete</Button>
+        <Button
+          color="red"
+          onClick={() => onClickDelete(skillId, userId)}
+        >
+          Delete
+        </Button>
       </Card.Content>
     </Card>
   );
