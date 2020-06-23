@@ -1,8 +1,9 @@
 import Api from '../../utils/api';
 import eventCreator from '../../lib/eventCreator';
 import { ThunkDispatch } from '../../types';
+import { GET_USER } from './constants';
 
-const getUserEvent = eventCreator('GET_USER');
+const getUserEvent = eventCreator(GET_USER);
 
 export const getUser = (userId: number) => (dispatch: ThunkDispatch) => {
   dispatch(getUserEvent.fetch());

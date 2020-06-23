@@ -2,6 +2,7 @@ import {
   UsersData,
   UsersState,
 } from './types';
+import { GET_USERS } from '../../actions/users/constants';
 import { EVENTS, STATUSES } from '../../lib/constants';
 
 interface UsersEvent {
@@ -21,7 +22,7 @@ const idleReducer = (
   event: UsersEvent,
 ) => {
   switch (event.type) {
-    case `GET_USERS/${EVENTS.FETCH}`:
+    case `${GET_USERS}/${EVENTS.FETCH}`:
       return {
         ...state,
         status: STATUSES.LOADING,
@@ -37,13 +38,13 @@ const loadingReducer = (
   event: UsersEvent,
 ) => {
   switch (event.type) {
-    case `GET_USERS/${EVENTS.RESOLVE}`:
+    case `${GET_USERS}/${EVENTS.RESOLVE}`:
       return {
         status: STATUSES.SUCCESS,
         data: event.data,
         error: null,
       };
-    case `GET_USERS/${EVENTS.REJECT}`:
+    case `${GET_USERS}/${EVENTS.REJECT}`:
       return {
         ...state,
         status: STATUSES.FAILURE,
@@ -59,13 +60,13 @@ const successFailureReducer = (
   event: UsersEvent,
 ) => {
   switch (event.type) {
-    case `GET_USERS/${EVENTS.FETCH}`:
+    case `${GET_USERS}/${EVENTS.FETCH}`:
       return {
         ...state,
         status: STATUSES.LOADING,
         error: null,
       };
-    case `GET_USERS/${EVENTS.CLEAR}`:
+    case `${GET_USERS}/${EVENTS.CLEAR}`:
       return initialUsersState;
     default:
       return state;

@@ -1,4 +1,5 @@
 import { CreateSkillEvent, CreateSkillState } from './types';
+import { CREATE_SKILL } from '../../actions/skill/constants';
 import { EVENTS, STATUSES } from '../../lib/constants';
 
 export const initialCreateSkillState: CreateSkillState = {
@@ -13,7 +14,7 @@ const idleReducer = (
   const { type } = event;
 
   switch (type) {
-    case `CREATE_SKILL/${EVENTS.FETCH}`:
+    case `${CREATE_SKILL}/${EVENTS.FETCH}`:
       return {
         ...state,
         status: STATUSES.LOADING,
@@ -31,12 +32,12 @@ const loadingReducer = (
   const { error, type } = event;
 
   switch (type) {
-    case `CREATE_SKILL/${EVENTS.RESOLVE}`:
+    case `${CREATE_SKILL}/${EVENTS.RESOLVE}`:
       return {
         status: STATUSES.SUCCESS,
         error: null,
       };
-    case `CREATE_SKILL/${EVENTS.REJECT}`:
+    case `${CREATE_SKILL}/${EVENTS.REJECT}`:
       return {
         ...state,
         status: STATUSES.FAILURE,
@@ -54,7 +55,7 @@ const successFailureReducer = (
   const { type } = event;
 
   switch (type) {
-    case `CREATE_SKILL/${EVENTS.FETCH}`:
+    case `${CREATE_SKILL}/${EVENTS.FETCH}`:
       return {
         ...state,
         status: STATUSES.LOADING,

@@ -2,9 +2,10 @@ import Api from '../../utils/api';
 import eventCreator from '../../lib/eventCreator';
 import { ThunkDispatch } from '../../types';
 import { getUser } from '../user';
+import { CREATE_SKILL, DESTROY_SKILL } from './constants';
 
-const createSkillEvent = eventCreator('CREATE_SKILL');
-const destroySkillEvent = eventCreator('DESTROY_SKILL');
+const createSkillEvent = eventCreator(CREATE_SKILL);
+const destroySkillEvent = eventCreator(DESTROY_SKILL);
 
 export const createSkill = (
   name: string,
