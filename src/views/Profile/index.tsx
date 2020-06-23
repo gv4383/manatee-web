@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 
 import Profile from './presenter';
+import { destroySkill } from '../../store/actions/skill';
 import { clearUser, getUser } from '../../store/actions/user';
 import {
   skills as SkillsSelector,
@@ -34,8 +35,13 @@ const ProfileContainer = (props: Props) => {
 
   const handleOnClickBack = () => dispatch(clearUser());
 
+  const handleDeleteSkill = (skillId: number, userId: number) => {
+    dispatch(destroySkill(skillId, userId));
+  };
+
   return (
     <Profile
+      handleDeleteSkill={handleDeleteSkill}
       onClickBack={handleOnClickBack}
       skills={skills}
       user={user}

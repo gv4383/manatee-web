@@ -28,10 +28,13 @@ export const createSkill = (
     .catch(error => dispatch(createSkillEvent.reject(error)));
 };
 
-export const destroySkill = (skillId: number) => (dispatch: ThunkDispatch) => {
+export const destroySkill = (skillId: number, userId: number) => (dispatch: ThunkDispatch) => {
   dispatch(destroySkillEvent.fetch());
 
   return Api.delete(`/skills/${skillId}`)
-    .then(res => dispatch(destroySkillEvent.resolve(res)))
+    .then(res => {
+      dispatch(destroySkillEvent.resolve(res));
+      dispatch(getUser(userId));
+    })
     .catch(error => dispatch(destroySkillEvent.reject(error)));
 };

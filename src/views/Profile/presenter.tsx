@@ -8,13 +8,19 @@ import UserCard from '../../components/UserCard';
 import SkillForm from '../../components/SkillForm';
 
 interface Props {
+  handleDeleteSkill: (skillId: number, userId: number) => void;
   onClickBack: () => void;
   skills: Skill[] | undefined;
   user: User | undefined;
 }
 
 const Profile = (props: Props) => {
-  const { onClickBack, skills, user } = props;
+  const {
+    handleDeleteSkill,
+    onClickBack,
+    skills,
+    user,
+  } = props;
   const email = user?.attributes?.email;
   const firstName = user?.attributes?.first_name;
   const lastName = user?.attributes?.last_name;
@@ -24,7 +30,10 @@ const Profile = (props: Props) => {
       key={skill.attributes.name}
       description={skill.attributes.description}
       name={skill.attributes.name}
+      onClickDelete={handleDeleteSkill}
       rating={skill.attributes.rating}
+      skillId={parseInt(skill.id, 10)}
+      userId={skill.attributes.user_id}
     />
   ));
   const userSkills = skills && skills.length > 0

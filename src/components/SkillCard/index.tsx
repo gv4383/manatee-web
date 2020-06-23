@@ -6,14 +6,20 @@ import './styles.scss';
 interface Props {
   description: string;
   name: string;
+  onClickDelete: (skillId: number, userId: number) => void;
   rating: number;
+  skillId: number;
+  userId: number;
 }
 
 const SkillCard = (props: Props) => {
   const {
     description,
     name,
+    onClickDelete,
     rating,
+    skillId,
+    userId,
   } = props;
 
   return (
@@ -32,7 +38,7 @@ const SkillCard = (props: Props) => {
       </Card.Content>
       <Card.Content extra>
         <Button>Edit</Button>
-        <Button color="red">Delete</Button>
+        <Button color="red" onClick={() => onClickDelete(skillId, userId)}>Delete</Button>
       </Card.Content>
     </Card>
   );
