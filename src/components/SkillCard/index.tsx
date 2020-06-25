@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Card } from 'semantic-ui-react';
 
 import './styles.scss';
@@ -21,8 +21,11 @@ const SkillCard = (props: Props) => {
     skillId,
     userId,
   } = props;
+  const [isEditing, setIsEditing] = useState(false);
 
-  return (
+  const handleOnClickEditCancel = () => setIsEditing(!isEditing);
+
+  const nonEditCard = (
     <Card>
       <Card.Content>
         <Card.Header className="skill-card-header">
@@ -37,7 +40,7 @@ const SkillCard = (props: Props) => {
         <Card.Description>{description}</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <Button>Edit</Button>
+        <Button onClick={handleOnClickEditCancel}>Edit</Button>
         <Button
           color="red"
           onClick={() => onClickDelete(skillId, userId)}
@@ -47,6 +50,37 @@ const SkillCard = (props: Props) => {
       </Card.Content>
     </Card>
   );
+
+  const editCard = (
+    <Card>
+      <Card.Content>
+        <Card.Header className="skill-card-header">
+          <div>Editing!</div>
+          <div>
+            Rating:
+            {' '}
+            {rating}
+            /5
+          </div>
+        </Card.Header>
+        <Card.Description>{description}</Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <Button
+          color="green"
+        >
+          Submit
+        </Button>
+        <Button onClick={handleOnClickEditCancel}>Cancel</Button>
+      </Card.Content>
+    </Card>
+  );
+
+  const displaySkillCard = isEditing
+    ? editCard
+    : nonEditCard;
+
+  return displaySkillCard;
 };
 
 export default SkillCard;
