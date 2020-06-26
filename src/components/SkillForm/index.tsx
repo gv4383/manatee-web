@@ -13,6 +13,8 @@ import {
 
 import { createSkill } from '../../store/actions/skill';
 
+import './styles.scss';
+
 type Event =
   | ChangeEvent<HTMLInputElement>
   | FormEvent<HTMLTextAreaElement>
@@ -24,11 +26,17 @@ type EventData =
   | TextAreaProps;
 
 interface Props {
+  isEditSkill?: boolean;
+  onClickCancel?: () => void;
   userId: string | undefined;
 }
 
 const SkillForm = (props: Props) => {
-  const { userId } = props;
+  const {
+    isEditSkill,
+    onClickCancel,
+    userId,
+  } = props;
   const formInitialState = {
     name: '',
     description: '',
@@ -60,6 +68,12 @@ const SkillForm = (props: Props) => {
 
     setFormInputs(formInitialState);
   };
+
+  const displayCancelButton = isEditSkill && (
+    <Form.Button onClick={onClickCancel}>
+      Cancel
+    </Form.Button>
+  );
 
   return (
     <Form>
@@ -116,7 +130,10 @@ const SkillForm = (props: Props) => {
           value={5}
         />
       </Form.Group>
-      <Form.Button type="submit" onClick={handleSubmit}>Submit</Form.Button>
+      <div className="skill-form-action-bar-container">
+        <Form.Button type="submit" onClick={handleSubmit}>Submit</Form.Button>
+        {displayCancelButton}
+      </div>
     </Form>
   );
 };
