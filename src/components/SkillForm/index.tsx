@@ -28,6 +28,9 @@ type EventData =
 interface Props {
   isEditSkill?: boolean;
   onClickCancel?: () => void;
+  skillDescription?: string;
+  skillName?: string;
+  skillRating?: number;
   userId: string | undefined;
 }
 
@@ -35,12 +38,15 @@ const SkillForm = (props: Props) => {
   const {
     isEditSkill,
     onClickCancel,
+    skillDescription,
+    skillName,
+    skillRating,
     userId,
   } = props;
   const formInitialState = {
-    name: '',
-    description: '',
-    rating: 1,
+    name: skillName || '',
+    description: skillDescription || '',
+    rating: skillRating || 1,
   };
   const [formInputs, setFormInputs] = useState(formInitialState);
   const {
