@@ -92,7 +92,10 @@ const SkillForm = (props: Props) => {
         placeholder="Share some details about this skill..."
         value={description}
       />
-      <Form.Group inline>
+      <Form.Group
+        inline={!isEditSkill}
+        grouped={isEditSkill}
+      >
         <label>Rating</label>
         <Form.Radio
           checked={formInputs.rating === 1}
@@ -131,7 +134,13 @@ const SkillForm = (props: Props) => {
         />
       </Form.Group>
       <div className="skill-form-action-bar-container">
-        <Form.Button type="submit" onClick={handleSubmit}>Submit</Form.Button>
+        <Form.Button
+          color="green"
+          onClick={handleSubmit}
+          type="submit"
+        >
+          Submit
+        </Form.Button>
         {displayCancelButton}
       </div>
     </Form>

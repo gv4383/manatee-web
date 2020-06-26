@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Card } from 'semantic-ui-react';
+import {
+  Button,
+  Card,
+} from 'semantic-ui-react';
+
+import SkillForm from '../SkillForm';
 
 import './styles.scss';
 
@@ -52,27 +57,12 @@ const SkillCard = (props: Props) => {
   );
 
   const editCard = (
-    <Card>
-      <Card.Content>
-        <Card.Header className="skill-card-header">
-          <div>Editing!</div>
-          <div>
-            Rating:
-            {' '}
-            {rating}
-            /5
-          </div>
-        </Card.Header>
-        <Card.Description>{description}</Card.Description>
-      </Card.Content>
-      <Card.Content extra>
-        <Button
-          color="green"
-        >
-          Submit
-        </Button>
-        <Button onClick={handleOnClickEditCancel}>Cancel</Button>
-      </Card.Content>
+    <Card className="skill-card-container">
+      <SkillForm
+        isEditSkill
+        onClickCancel={handleOnClickEditCancel}
+        userId={userId.toString()}
+      />
     </Card>
   );
 
