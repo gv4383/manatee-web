@@ -11,7 +11,7 @@ import {
   TextAreaProps,
 } from 'semantic-ui-react';
 
-import { createSkill } from '../../store/actions/skill';
+import { createSkill, updateSkill } from '../../store/actions/skill';
 
 import './styles.scss';
 
@@ -29,6 +29,7 @@ interface Props {
   isEditSkill?: boolean;
   onClickCancel?: () => void;
   skillDescription?: string;
+  skillId?: number;
   skillName?: string;
   skillRating?: number;
   userId: string | undefined;
@@ -39,6 +40,7 @@ const SkillForm = (props: Props) => {
     isEditSkill,
     onClickCancel,
     skillDescription,
+    skillId,
     skillName,
     skillRating,
     userId,
@@ -64,12 +66,22 @@ const SkillForm = (props: Props) => {
 
   const handleSubmit = () => {
     if (userId) {
-      dispatch(createSkill(
-        name,
-        description,
-        rating,
-        parseInt(userId, 10),
-      ));
+      if (isEditSkill && skillId) {
+        dispatch(updateSkill(
+          name,
+          description,
+          rating,
+          skillId,
+          parseInt(userId, 10),
+        ));
+      } else {
+        dispatch(createSkill(
+          name,
+          description,
+          rating,
+          parseInt(userId, 10),
+        ));
+      }
     }
 
     setFormInputs(formInitialState);

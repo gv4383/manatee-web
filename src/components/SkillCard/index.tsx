@@ -62,6 +62,7 @@ const SkillCard = (props: Props) => {
         isEditSkill
         onClickCancel={handleOnClickEditCancel}
         skillDescription={description}
+        skillId={skillId}
         skillName={name}
         skillRating={rating}
         userId={userId.toString()}
