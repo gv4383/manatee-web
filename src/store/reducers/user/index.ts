@@ -12,7 +12,9 @@ const idleReducer = (
   state: UserState,
   event: UserEvent,
 ) => {
-  switch (event.type) {
+  const { type } = event;
+
+  switch (type) {
     case `${GET_USER}/${EVENTS.FETCH}`:
       return {
         ...state,
@@ -28,18 +30,24 @@ const loadingReducer = (
   state: UserState,
   event: UserEvent,
 ) => {
-  switch (event.type) {
+  const {
+    data,
+    error,
+    type,
+  } = event;
+
+  switch (type) {
     case `${GET_USER}/${EVENTS.RESOLVE}`:
       return {
         status: STATUSES.SUCCESS,
-        data: event.data,
+        data,
         error: null,
       };
     case `${GET_USER}/${EVENTS.REJECT}`:
       return {
         ...state,
         status: STATUSES.FAILURE,
-        error: event.error,
+        error,
       };
     default:
       return state;
@@ -50,7 +58,9 @@ const successFailureReducer = (
   state: UserState,
   event: UserEvent,
 ) => {
-  switch (event.type) {
+  const { type } = event;
+
+  switch (type) {
     case `${GET_USER}/${EVENTS.FETCH}`:
       return {
         ...state,
@@ -68,7 +78,9 @@ const user = (
   state: UserState = initialUserState,
   event: UserEvent,
 ) => {
-  switch (state.status) {
+  const { status } = state;
+
+  switch (status) {
     case STATUSES.IDLE:
       return idleReducer(state, event);
     case STATUSES.LOADING:
