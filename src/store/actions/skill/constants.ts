@@ -1,2 +1,3 @@
 export const CREATE_SKILL = 'CREATE_SKILL';
 export const DESTROY_SKILL = 'DESTROY_SKILL';
+export const UPDATE_SKILL = 'UPDATE_SKILL';
