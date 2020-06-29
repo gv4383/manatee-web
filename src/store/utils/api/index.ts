@@ -15,7 +15,7 @@ const API = {
   })
     .then(res => res),
   put: (endpoint: string, payload: any) => axios(`${baseUrl}${endpoint}`, {
-    method: 'POST',
+    method: 'PUT',
     headers: getHeaders(),
     data: payload,
   })
