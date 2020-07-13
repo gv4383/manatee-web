@@ -1,4 +1,5 @@
-import { Skill, User } from '../user/types';
+import { Skill } from '../skill/types';
+import { User } from '../user/types';
 
 export interface UsersData {
   data: User[];

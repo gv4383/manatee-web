@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 
-import { Skill, User } from '../../store/reducers/user/types';
+import { Skill } from '../../store/reducers/skill/types';
+import { User } from '../../store/reducers/user/types';
 import SkillCard from '../../components/SkillCard';
 import UserCard from '../../components/UserCard';
 import SkillForm from '../../components/SkillForm';

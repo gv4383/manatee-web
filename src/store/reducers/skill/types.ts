@@ -1,4 +1,15 @@
-import { Skill } from '../user/types';
+interface SkillAttributes {
+  name: string;
+  description: string;
+  rating: number;
+  user_id: number;
+}
+
+export interface Skill {
+  id: string;
+  type: string;
+  attributes: SkillAttributes;
+}
 
 interface SkillData {
   data: Skill;

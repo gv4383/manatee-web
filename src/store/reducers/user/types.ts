@@ -1,27 +1,22 @@
+import { Skill } from '../skill/types';
+
 interface UserAttributes {
   first_name: string;
   last_name: string;
   email: string;
 }
 
-interface SkillAttributes {
-  name: string;
-  description: string;
-  rating: number;
-  user_id: number;
-}
-
-export interface RelationshipSkill {
+export interface SkillRelationship {
   id: string;
   type: string;
 }
 
-interface RelationshipSkills {
-  data: RelationshipSkill[];
+interface SkillsRelationships {
+  data: SkillRelationship[];
 }
 
 interface Relationships {
-  skills: RelationshipSkills;
+  skills: SkillsRelationships;
 }
 
 export interface User {
@@ -29,12 +24,6 @@ export interface User {
   type: string;
   attributes: UserAttributes;
   relationships: Relationships;
-}
-
-export interface Skill {
-  id: string;
-  type: string;
-  attributes: SkillAttributes;
 }
 
 export interface UserData {
