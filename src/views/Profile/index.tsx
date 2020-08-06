@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 
@@ -33,11 +33,17 @@ const ProfileContainer = (props: Props) => {
     dispatch(getUser(parsedProfileId));
   }, [dispatch, parsedProfileId]);
 
-  const handleOnClickBack = () => dispatch(clearUser());
+  const handleOnClickBack = useCallback(
+    () => dispatch(clearUser()),
+    [dispatch],
+  );
 
-  const handleDeleteSkill = (skillId: number, userId: number) => {
-    dispatch(destroySkill(skillId, userId));
-  };
+  const handleDeleteSkill = useCallback(
+    (skillId: number, userId: number) => {
+      dispatch(destroySkill(skillId, userId));
+    },
+    [dispatch],
+  );
 
   return (
     <Profile
