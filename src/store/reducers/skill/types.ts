@@ -5,10 +5,24 @@ interface SkillAttributes {
   user_id: number;
 }
 
+interface UserRelationship {
+  id: string;
+  type: string;
+}
+
+interface UsersRelationshipsData {
+  data: UserRelationship;
+}
+
+interface Relationships {
+  user: UsersRelationshipsData;
+}
+
 export interface Skill {
   id: string;
   type: string;
   attributes: SkillAttributes;
+  relationships: Relationships;
 }
 
 interface SkillData {

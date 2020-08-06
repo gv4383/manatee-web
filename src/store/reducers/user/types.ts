@@ -11,12 +11,12 @@ export interface SkillRelationship {
   type: string;
 }
 
-interface SkillsRelationships {
+interface SkillsRelationshipsData {
   data: SkillRelationship[];
 }
 
 interface Relationships {
-  skills: SkillsRelationships;
+  skills: SkillsRelationshipsData;
 }
 
 export interface User {
