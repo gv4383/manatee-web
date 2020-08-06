@@ -28,6 +28,7 @@ type EventData =
 interface Props {
   isEditSkill?: boolean;
   onClickCancel?: () => void;
+  setIsEditing?: (editState: boolean) => void;
   skillDescription?: string;
   skillId?: number;
   skillName?: string;
@@ -39,6 +40,7 @@ const SkillForm = (props: Props) => {
   const {
     isEditSkill,
     onClickCancel,
+    setIsEditing,
     skillDescription,
     skillId,
     skillName,
@@ -74,6 +76,10 @@ const SkillForm = (props: Props) => {
           skillId,
           parseInt(userId, 10),
         ));
+
+        if (setIsEditing) {
+          setIsEditing(false);
+        }
       } else {
         dispatch(createSkill(
           name,

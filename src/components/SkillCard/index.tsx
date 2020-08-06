@@ -61,6 +61,7 @@ const SkillCard = (props: Props) => {
       <SkillForm
         isEditSkill
         onClickCancel={handleOnClickEditCancel}
+        setIsEditing={setIsEditing}
         skillDescription={description}
         skillId={skillId}
         skillName={name}
