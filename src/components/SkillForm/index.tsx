@@ -9,6 +9,7 @@ import {
   CheckboxProps,
   InputOnChangeData,
   TextAreaProps,
+  Checkbox,
 } from 'semantic-ui-react';
 
 import { createSkill, updateSkill } from '../../store/actions/skill';
@@ -51,10 +52,14 @@ const SkillForm = (props: Props) => {
     name: skillName || '',
     description: skillDescription || '',
     rating: skillRating || 1,
+    isMentee: false,
+    isMentor: false,
   };
   const [formInputs, setFormInputs] = useState(formInitialState);
   const {
     description,
+    isMentee,
+    isMentor,
     name,
     rating,
   } = formInputs;
@@ -64,6 +69,15 @@ const SkillForm = (props: Props) => {
     const { name, value } = data;
 
     setFormInputs({ ...formInputs, [name]: value });
+  };
+
+  const handleCheckboxChange = (status: boolean) => (event: Event, data: EventData) => {
+    const { name } = data;
+
+    setFormInputs({
+      ...formInputs,
+      [name]: !status,
+    });
   };
 
   const handleSubmit = () => {
@@ -155,6 +169,20 @@ const SkillForm = (props: Props) => {
           name="rating"
           onChange={handleChange}
           value={5}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Checkbox
+          checked={isMentee}
+          label="Mentee"
+          name="isMentee"
+          onChange={handleCheckboxChange(isMentee)}
+        />
+        <Checkbox
+          checked={isMentor}
+          label="Mentor"
+          name="isMentor"
+          onChange={handleCheckboxChange(isMentor)}
         />
       </Form.Group>
       <div className="skill-form-action-bar-container">
