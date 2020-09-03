@@ -98,6 +98,8 @@ const SkillForm = (props: Props) => {
         dispatch(createSkill(
           name,
           description,
+          isMentee,
+          isMentor,
           rating,
           parseInt(userId, 10),
         ));

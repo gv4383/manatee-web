@@ -15,6 +15,8 @@ const updateSkilEvent = eventCreator(UPDATE_SKILL);
 export const createSkill = (
   name: string,
   description: string,
+  mentee: boolean,
+  mentor: boolean,
   rating: number,
   userId: number,
 ) => (dispatch: ThunkDispatch) => {
@@ -23,6 +25,8 @@ export const createSkill = (
   return Api.post('/skills', {
     name,
     description,
+    mentee,
+    mentor,
     rating,
     user_id: userId,
   })
