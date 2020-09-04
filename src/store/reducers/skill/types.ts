@@ -2,6 +2,8 @@ interface SkillAttributes {
   name: string;
   description: string;
   rating: number;
+  mentee: boolean;
+  mentor: boolean;
   user_id: number;
 }
 

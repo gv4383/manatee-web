@@ -30,6 +30,8 @@ const Profile = (props: Props) => {
     <SkillCard
       key={skill.attributes.name}
       description={skill.attributes.description}
+      isMentee={skill.attributes.mentee}
+      isMentor={skill.attributes.mentor}
       name={skill.attributes.name}
       onClickDelete={handleDeleteSkill}
       rating={skill.attributes.rating}

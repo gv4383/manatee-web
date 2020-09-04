@@ -28,6 +28,8 @@ type EventData =
 
 interface Props {
   isEditSkill?: boolean;
+  isMentee?: boolean;
+  isMentor?: boolean;
   onClickCancel?: () => void;
   setIsEditing?: (editState: boolean) => void;
   skillDescription?: string;
@@ -40,6 +42,8 @@ interface Props {
 const SkillForm = (props: Props) => {
   const {
     isEditSkill,
+    isMentee,
+    isMentor,
     onClickCancel,
     setIsEditing,
     skillDescription,
@@ -51,15 +55,15 @@ const SkillForm = (props: Props) => {
   const formInitialState = {
     name: skillName || '',
     description: skillDescription || '',
+    mentee: isMentee || false,
+    mentor: isMentor || false,
     rating: skillRating || 1,
-    isMentee: false,
-    isMentor: false,
   };
   const [formInputs, setFormInputs] = useState(formInitialState);
   const {
     description,
-    isMentee,
-    isMentor,
+    mentee,
+    mentor,
     name,
     rating,
   } = formInputs;
@@ -86,6 +90,8 @@ const SkillForm = (props: Props) => {
         dispatch(updateSkill(
           name,
           description,
+          mentee,
+          mentor,
           rating,
           skillId,
           parseInt(userId, 10),
@@ -98,8 +104,8 @@ const SkillForm = (props: Props) => {
         dispatch(createSkill(
           name,
           description,
-          isMentee,
-          isMentor,
+          mentee,
+          mentor,
           rating,
           parseInt(userId, 10),
         ));
@@ -175,16 +181,16 @@ const SkillForm = (props: Props) => {
       </Form.Group>
       <Form.Group>
         <Checkbox
-          checked={isMentee}
+          checked={mentee}
           label="Mentee"
-          name="isMentee"
-          onChange={handleCheckboxChange(isMentee)}
+          name="mentee"
+          onChange={handleCheckboxChange(mentee)}
         />
         <Checkbox
-          checked={isMentor}
+          checked={mentor}
           label="Mentor"
-          name="isMentor"
-          onChange={handleCheckboxChange(isMentor)}
+          name="mentor"
+          onChange={handleCheckboxChange(mentor)}
         />
       </Form.Group>
       <div className="skill-form-action-bar-container">

@@ -10,6 +10,8 @@ import './styles.scss';
 
 interface Props {
   description: string;
+  isMentee: boolean;
+  isMentor: boolean;
   name: string;
   onClickDelete: (skillId: number, userId: number) => void;
   rating: number;
@@ -20,6 +22,8 @@ interface Props {
 const SkillCard = (props: Props) => {
   const {
     description,
+    isMentee,
+    isMentor,
     name,
     onClickDelete,
     rating,
@@ -60,6 +64,8 @@ const SkillCard = (props: Props) => {
     <Card className="skill-card-container">
       <SkillForm
         isEditSkill
+        isMentee={isMentee}
+        isMentor={isMentor}
         onClickCancel={handleOnClickEditCancel}
         setIsEditing={setIsEditing}
         skillDescription={description}

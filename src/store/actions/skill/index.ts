@@ -51,6 +51,8 @@ export const destroySkill = (skillId: number, userId: number) => (dispatch: Thun
 export const updateSkill = (
   name: string,
   description: string,
+  mentee: boolean,
+  mentor: boolean,
   rating: number,
   skillId: number,
   userId: number,
@@ -60,6 +62,8 @@ export const updateSkill = (
   return Api.put(`/skills/${skillId}`, {
     name,
     description,
+    mentee,
+    mentor,
     rating,
   })
     .then(res => {
