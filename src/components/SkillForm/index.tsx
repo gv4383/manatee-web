@@ -55,7 +55,7 @@ const SkillForm = (props: Props) => {
   const formInitialState = {
     name: skillName || '',
     description: skillDescription || '',
-    mentee: isMentee || false,
+    mentee: isMentee || true,
     mentor: isMentor || false,
     rating: skillRating || 1,
   };
