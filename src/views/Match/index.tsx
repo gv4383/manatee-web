@@ -16,11 +16,11 @@ const MatchContainer = () => {
   const { searchInput, searchOption } = formInputs;
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => {
-    const { value } = data;
+    const { name, value } = data;
 
     setFormInputs({
       ...formInputs,
-      searchInput: value,
+      [name]: value,
     });
   };
 

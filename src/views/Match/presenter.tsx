@@ -33,6 +33,7 @@ const Match = (props: Props) => {
       <form onSubmit={onSubmit}>
         <Input
           icon={searchIcon}
+          name="searchInput"
           onChange={onChange}
           placeholder="Search"
           value={searchInput}
