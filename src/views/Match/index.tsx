@@ -8,18 +8,28 @@ import { InputOnChangeData } from 'semantic-ui-react';
 import Match from './presenter';
 
 const MatchContainer = () => {
-  const [searchInput, setSearchInput] = useState('');
+  const formInitialState = {
+    searchInput: '',
+    searchOption: 'mentors',
+  };
+  const [formInputs, setFormInputs] = useState(formInitialState);
+  const { searchInput, searchOption } = formInputs;
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => {
     const { value } = data;
 
-    setSearchInput(value);
+    setFormInputs({
+      ...formInputs,
+      searchInput: value,
+    });
   };
 
   const handleOnSearchClick = (event: FormEvent) => {
     event.preventDefault();
 
-    console.log(`Searching for "${searchInput}"`);
+    // TODO: Create and replace with action that
+    // calls api to find mentee/mentor matches
+    console.log(`Searching for ${searchOption} for "${searchInput}"`);
   };
 
   return (
