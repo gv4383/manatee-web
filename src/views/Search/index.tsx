@@ -5,13 +5,13 @@ import React, {
 } from 'react';
 import { CheckboxProps, InputOnChangeData } from 'semantic-ui-react';
 
-import Match from './presenter';
+import Search from './presenter';
 
 export type Event = ChangeEvent<HTMLInputElement> | FormEvent<HTMLInputElement>;
 
 export type EventData = InputOnChangeData | CheckboxProps;
 
-const MatchContainer = () => {
+const SearchContainer = () => {
   const formInitialState = {
     searchInput: '',
     searchOption: 'mentor',
@@ -37,7 +37,7 @@ const MatchContainer = () => {
   };
 
   return (
-    <Match
+    <Search
       onChange={handleOnChange}
       onSubmit={handleOnSearchClick}
       searchInput={searchInput}
@@ -46,4 +46,4 @@ const MatchContainer = () => {
   );
 };
 
-export default MatchContainer;
+export default SearchContainer;

@@ -15,7 +15,7 @@ interface Props {
   searchOption: string;
 }
 
-const Match = (props: Props) => {
+const Search = (props: Props) => {
   const {
     onChange,
     onSubmit,
@@ -66,4 +66,4 @@ const Match = (props: Props) => {
   );
 };
 
-export default Match;
+export default Search;

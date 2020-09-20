@@ -24,8 +24,8 @@ const Dashboard = (props: Props) => {
 
   return (
     <div>
-      <Link to="/match">
-        <Button>Match</Button>
+      <Link to="/search">
+        <Button>Search</Button>
       </Link>
       { displayUsers }
     </div>
