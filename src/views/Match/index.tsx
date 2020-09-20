@@ -3,19 +3,23 @@ import React, {
   FormEvent,
   useState,
 } from 'react';
-import { InputOnChangeData } from 'semantic-ui-react';
+import { CheckboxProps, InputOnChangeData } from 'semantic-ui-react';
 
 import Match from './presenter';
+
+export type Event = ChangeEvent<HTMLInputElement> | FormEvent<HTMLInputElement>;
+
+export type EventData = InputOnChangeData | CheckboxProps;
 
 const MatchContainer = () => {
   const formInitialState = {
     searchInput: '',
-    searchOption: 'mentors',
+    searchOption: 'mentor',
   };
   const [formInputs, setFormInputs] = useState(formInitialState);
   const { searchInput, searchOption } = formInputs;
 
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => {
+  const handleOnChange = (event: Event, data: EventData) => {
     const { name, value } = data;
 
     setFormInputs({
@@ -29,7 +33,7 @@ const MatchContainer = () => {
 
     // TODO: Create and replace with action that
     // calls api to find mentee/mentor matches
-    console.log(`Searching for ${searchOption} for "${searchInput}"`);
+    console.log(`Searching for a ${searchOption} for "${searchInput}"`);
   };
 
   return (
@@ -37,6 +41,7 @@ const MatchContainer = () => {
       onChange={handleOnChange}
       onSubmit={handleOnSearchClick}
       searchInput={searchInput}
+      searchOption={searchOption}
     />
   );
 };
