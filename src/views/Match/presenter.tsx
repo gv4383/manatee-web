@@ -27,7 +27,6 @@ const Match = (props: Props) => {
     />
   );
 
-  // TODO: Select whether to find mentee or mentee matches
   return (
     <div>
       <Form onSubmit={onSubmit}>
