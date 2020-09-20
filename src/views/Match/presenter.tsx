@@ -1,5 +1,10 @@
 import React, { FormEvent } from 'react';
-import { Form, Icon } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import {
+  Button,
+  Form,
+  Icon,
+} from 'semantic-ui-react';
 
 import { Event, EventData } from './index';
 
@@ -29,6 +34,9 @@ const Match = (props: Props) => {
 
   return (
     <div>
+      <Link to="/">
+        <Button>Back</Button>
+      </Link>
       <Form onSubmit={onSubmit}>
         <Form.Input
           icon={searchIcon}
