@@ -73,3 +73,24 @@ const successFailureReducer = (
       return state;
   }
 };
+
+const searchSkill = (
+  state: SearchSkillState = initialSearchSkillState,
+  event: SearchSkillEvent,
+) => {
+  const { status } = state;
+
+  switch (status) {
+    case STATUSES.IDLE:
+      return idleReducer(state, event);
+    case STATUSES.LOADING:
+      return loadingReducer(state, event);
+    case STATUSES.SUCCESS:
+    case STATUSES.FAILURE:
+      return successFailureReducer(state, event);
+    default:
+      return state;
+  }
+};
+
+export default searchSkill;
