@@ -5,12 +5,15 @@ import { GET_SEARCH_SKILL } from './constants';
 
 const getSearchSkillEvent = eventCreator(GET_SEARCH_SKILL);
 
-export const getSearchSkill = (status: string, skill: string) => (dispatch: ThunkDispatch) => {
-  const searchCriteria = status === 'mentor'
-    ? 'mentor_skills'
-    : 'mentee_skills';
+export const getSearchSkill = (
+  searchOption: string,
+  skill: string,
+) => (dispatch: ThunkDispatch) => {
+  const searchCriteria = searchOption === 'mentee'
+    ? 'mentee_skills'
+    : 'mentor_skills';
 
-  console.log(`Searching for a ${status} for ${skill}!`);
+  console.log(`Searching for a ${searchOption} for ${skill}!`);
 
   dispatch(getSearchSkillEvent.fetch());
 
