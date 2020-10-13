@@ -13,8 +13,6 @@ export const getSearchSkill = (
     ? 'mentee_skills'
     : 'mentor_skills';
 
-  console.log(`Searching for a ${searchOption} for ${skill}!`);
-
   dispatch(getSearchSkillEvent.fetch());
 
   return Api.get(`/${searchCriteria}?skill=${skill}`)

@@ -3,15 +3,18 @@ import React, {
   FormEvent,
   useState,
 } from 'react';
+import { useDispatch } from 'react-redux';
 import { CheckboxProps, InputOnChangeData } from 'semantic-ui-react';
 
 import Search from './presenter';
+import { getSearchSkill } from '../../store/actions/searchSkill';
 
 export type Event = ChangeEvent<HTMLInputElement> | FormEvent<HTMLInputElement>;
 
 export type EventData = InputOnChangeData | CheckboxProps;
 
 const SearchContainer = () => {
+  const dispatch = useDispatch();
   const formInitialState = {
     searchInput: '',
     searchOption: 'mentor',
@@ -31,9 +34,9 @@ const SearchContainer = () => {
   const handleOnSearchClick = (event: FormEvent) => {
     event.preventDefault();
 
-    // TODO: Create and replace with action that
-    // calls api to find mentee/mentor matches
-    console.log(`Searching for a ${searchOption} for "${searchInput}"`);
+    dispatch(getSearchSkill(searchOption, searchInput));
+
+    // TODO: Create selector for searchSkill
   };
 
   return (
