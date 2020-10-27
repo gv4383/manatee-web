@@ -10,6 +10,7 @@ import { Event, EventData } from './index';
 
 interface Props {
   onChange: (event: Event, data: EventData) => void;
+  onClickBack: () => void;
   onSubmit: (event: FormEvent) => void;
   searchInput: string;
   searchOption: string;
@@ -18,6 +19,7 @@ interface Props {
 const Search = (props: Props) => {
   const {
     onChange,
+    onClickBack,
     onSubmit,
     searchInput,
     searchOption,
@@ -35,7 +37,7 @@ const Search = (props: Props) => {
   return (
     <div>
       <Link to="/">
-        <Button>Back</Button>
+        <Button onClick={onClickBack}>Back</Button>
       </Link>
       <Form onSubmit={onSubmit}>
         <Form.Input

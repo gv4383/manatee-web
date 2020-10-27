@@ -1,13 +1,14 @@
 import React, {
   ChangeEvent,
   FormEvent,
+  useCallback,
   useState,
 } from 'react';
 import { useDispatch } from 'react-redux';
 import { CheckboxProps, InputOnChangeData } from 'semantic-ui-react';
 
 import Search from './presenter';
-import { getSearchSkill } from '../../store/actions/searchSkill';
+import { clearSearchSkill, getSearchSkill } from '../../store/actions/searchSkill';
 
 export type Event = ChangeEvent<HTMLInputElement> | FormEvent<HTMLInputElement>;
 
@@ -39,9 +40,15 @@ const SearchContainer = () => {
     // TODO: Create selector for searchSkill
   };
 
+  const handleOnClickback = useCallback(
+    () => dispatch(clearSearchSkill()),
+    [dispatch],
+  );
+
   return (
     <Search
       onChange={handleOnChange}
+      onClickBack={handleOnClickback}
       onSubmit={handleOnSearchClick}
       searchInput={searchInput}
       searchOption={searchOption}
