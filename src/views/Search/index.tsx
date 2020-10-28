@@ -4,11 +4,15 @@ import React, {
   useCallback,
   useState,
 } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CheckboxProps, InputOnChangeData } from 'semantic-ui-react';
 
 import Search from './presenter';
 import { clearSearchSkill, getSearchSkill } from '../../store/actions/searchSkill';
+import {
+  skills as SearchedSkillsSelector,
+  users as SearchedUsersSelector,
+} from '../../store/selectors/searchSkill';
 
 export type Event = ChangeEvent<HTMLInputElement> | FormEvent<HTMLInputElement>;
 
@@ -16,6 +20,8 @@ export type EventData = InputOnChangeData | CheckboxProps;
 
 const SearchContainer = () => {
   const dispatch = useDispatch();
+  const searchedSkills = useSelector(SearchedSkillsSelector);
+  const searchedUsers = useSelector(SearchedUsersSelector);
   const formInitialState = {
     searchInput: '',
     searchOption: 'mentor',
@@ -36,8 +42,6 @@ const SearchContainer = () => {
     event.preventDefault();
 
     dispatch(getSearchSkill(searchOption, searchInput));
-
-    // TODO: Create selector for searchSkill
   };
 
   const handleOnClickback = useCallback(
@@ -50,6 +54,8 @@ const SearchContainer = () => {
       onChange={handleOnChange}
       onClickBack={handleOnClickback}
       onSubmit={handleOnSearchClick}
+      searchedSkills={searchedSkills}
+      searchedUsers={searchedUsers}
       searchInput={searchInput}
       searchOption={searchOption}
     />

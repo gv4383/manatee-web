@@ -7,11 +7,15 @@ import {
 } from 'semantic-ui-react';
 
 import { Event, EventData } from './index';
+import { Skill } from '../../store/reducers/skill/types';
+import { User } from '../../store/reducers/user/types';
 
 interface Props {
   onChange: (event: Event, data: EventData) => void;
   onClickBack: () => void;
   onSubmit: (event: FormEvent) => void;
+  searchedSkills?: Skill[];
+  searchedUsers?: User[];
   searchInput: string;
   searchOption: string;
 }
@@ -21,9 +25,13 @@ const Search = (props: Props) => {
     onChange,
     onClickBack,
     onSubmit,
+    searchedSkills,
+    searchedUsers,
     searchInput,
     searchOption,
   } = props;
+  console.log('SKILLS:', searchedSkills);
+  console.log('USERS:', searchedUsers);
 
   const searchIcon = (
     <Icon
