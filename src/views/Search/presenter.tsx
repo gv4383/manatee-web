@@ -42,6 +42,14 @@ const Search = (props: Props) => {
     />
   );
 
+  const displayUsers = searchedUsers?.map((user: User) => (
+    <div>
+      {user.attributes.first_name}
+      {' '}
+      {user.attributes.last_name}
+    </div>
+  ));
+
   return (
     <div>
       <Link to="/">
@@ -72,6 +80,8 @@ const Search = (props: Props) => {
           />
         </Form.Group>
       </Form>
+      <br />
+      {displayUsers}
     </div>
   );
 };
