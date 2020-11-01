@@ -9,6 +9,7 @@ import {
 import { Event, EventData } from './index';
 import { Skill } from '../../store/reducers/skill/types';
 import { User } from '../../store/reducers/user/types';
+import UserCard from '../../components/UserCard';
 
 interface Props {
   onChange: (event: Event, data: EventData) => void;
@@ -25,13 +26,11 @@ const Search = (props: Props) => {
     onChange,
     onClickBack,
     onSubmit,
-    searchedSkills,
+    // searchedSkills,
     searchedUsers,
     searchInput,
     searchOption,
   } = props;
-  console.log('SKILLS:', searchedSkills);
-  console.log('USERS:', searchedUsers);
 
   const searchIcon = (
     <Icon
@@ -42,13 +41,22 @@ const Search = (props: Props) => {
     />
   );
 
-  const displayUsers = searchedUsers?.map((user: User) => (
-    <div>
-      {user.attributes.first_name}
-      {' '}
-      {user.attributes.last_name}
-    </div>
-  ));
+  const displayUsers = searchedUsers?.map((user: User) => {
+    const {
+      email,
+      first_name: firstName,
+      last_name: lastName,
+    } = user.attributes;
+
+    return (
+      <UserCard
+        email={email}
+        firstName={firstName}
+        lastName={lastName}
+        isProfileCard
+      />
+    );
+  });
 
   return (
     <div>
